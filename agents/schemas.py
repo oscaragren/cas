@@ -79,7 +79,7 @@ class ReputationRecord:
         return self.cooperations_observed + self.defections_observed
     
     @property
-    def cooperate_rate(self) -> float:
+    def cooperation_rate(self) -> float:
         if self.total_observed == 0:
             return 0.5 # uninformative prior
         return self.cooperations_observed/self.total_observed
