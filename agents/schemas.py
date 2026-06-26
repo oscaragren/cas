@@ -1,6 +1,8 @@
+from __future__ import annotations
 from enum import Enum
 from dataclasses import dataclass, field
 import time, uuid
+
 
 class ActionType(str, Enum):
     COOPORATE = "cooporate"
@@ -12,8 +14,8 @@ class ActionType(str, Enum):
 
 @dataclass
 class Message:
-    sender_id: int
-    receiver_id: int | None # None = broadcast
+    sender_id: str
+    receiver_id: str | None # None = broadcast
     round_num: int
     action: ActionType
     payload: dict = field(default_factory=dict)
@@ -65,7 +67,7 @@ class AffectState:
 
 
 @dataclass
-class ReptutationRecord:
+class ReputationRecord:
     target_id: str
     cooperations_observed: int = 0
     defections_observed: int = 0
