@@ -5,7 +5,7 @@ import time, uuid
 
 
 class ActionType(str, Enum):
-    COOPORATE = "cooporate"
+    COOPERATE = "cooperate"
     DEFECT = "defect"
     SIGNAL_TRUST = "signal_trust"
     SIGNAL_THREAT = "signal_threat"
@@ -87,4 +87,4 @@ class ReputationRecord:
     def predict_next_action(self) -> ActionType:
         if self.last_action is not None:
             return self.last_action
-        return ActionType.COOPERATE if self.cooperate_rate >= 0.5 else ActionType.DEFECT
+        return ActionType.COOPERATE if self.cooperation_rate >= 0.5 else ActionType.DEFECT

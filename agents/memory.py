@@ -73,7 +73,7 @@ class AgentMemory:
 
     def _update_reputation(self, partner_id: str, their_action: ActionType) -> None:
         rec = self.reputations.setdefault(partner_id, ReputationRecord(target_id=partner_id))
-        if their_action in (ActionType.COOPORATE, ActionType.OFFER_RESOURCE):
+        if their_action in (ActionType.COOPERATE, ActionType.OFFER_RESOURCE):
             rec.cooperations_observed += 1
         elif their_action == ActionType.DEFECT:
             rec.defections_observed += 1
