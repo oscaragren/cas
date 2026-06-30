@@ -63,3 +63,24 @@ def test_get_client_factory_rejects_unknown_kind():
         assert False, "expected ValueError"
     except ValueError:
         pass
+
+def test_safe_json_extract_handles_clean_json():
+    result = _safe_json_extract('{"action": "cooperate", "rationale": "trust is high"}')
+    assert result == {"action": "cooperate", "rationale": "trust is high"}
+
+
+def test_safe_json_extract_handles_code_fence_wrapped_json():
+    text = '```json\n{"action": "defect", "rationale": "too risky"}\n```'
+    result = _safe_json_extract(text)
+    assert result == {"action": "defect", "rationale": "too risky"}
+
+
+def test_safe_json_extract_handles_preamble_text():
+    text = 'Here is my decision: {"action": "withhold", "rationale": "uncertain"}'
+    result = _safe_json_extract(text)
+    assert result == {"action": "withhold", "rationale": "uncertain"}
+
+
+def test_safe_json_extract_returns_none_on_garbage():
+    result = _safe_json_extract("this is not json at all")
+    assert result is None
