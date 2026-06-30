@@ -50,7 +50,7 @@ class MockLLMClient(LLMClient):
             f"trust/reputation signals; chose {action}."
         )
         parsed = {"action": action, "rationale": rationale}
-        return LLMResponse(raw_test=json.dumps(parsed), parsed=parsed)
+        return LLMResponse(raw_text=json.dumps(parsed), parsed=parsed)
 
 class AnthropicClient(LLMClient):
     def __init__(self, model: str = "claude-sonnet-4-6", max_tokens: int=400) -> None:
