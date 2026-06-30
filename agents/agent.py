@@ -140,7 +140,7 @@ class Agent:
         self.memory.clear_working()
 
     def behavioral_signature(self, window: int = 10) -> str:
-        recent = self.decision_log[window]
+        recent = self.decision_log[-window:]
         if not recent:
             return "no_history"
         coop_actions = {"cooperate", "offer_resource"}
@@ -149,5 +149,5 @@ class Agent:
         if rate >= 0.7:
             return "mostly_cooperative"
         if rate <= 0.3:
-            return "mostly_defection"
+            return "mostly_defecting"
         return "mixed"
